@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>North's Catchphrase</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div id="one" class="box dark_blue">
+			<img src="images/briefcase.svg" height="100em" width="100em" />
+		</div>
+		<div id="two" class="box light_blue">2</div>
+		<div id="three" class="box green">3</div>
+		<div id="four" class="box pink 4">4</div>
+		<div id="five" class="box orange 5">5</div>
+		<div id="six" class="box purple 6">6</div>
+		<div id="seven" class="box red 7">7</div>
+		<div id="eight" class="box violet 8">8</div>
+		<div id="nine" class="box brown 9">9</div>
+		<div id="ten" class="box coral 10">10</div>
+		<div id="eleven" class="box cyan 11">11</div>
+		<div id="twelve" class="box forest_green 12">12</div>
+	</div>
+
+	<script>
+	$(document).ready(function() {
+		$('.container div').click(function(event) {
+			console.log($(this).attr('id'));
+			$(this).css('visibility','hidden');
+			console.log($('.container div').length);
+		});
+
+		var numItems = $('.container div').length;
+		for (var i=0; i < numItems; i++) {
+			console.log(i);
+		}
+	});
+	</script>
+
+
+</body>
+</html>
