@@ -48,20 +48,66 @@
 	</div>
 
 	<script>
+	let running = true;
+	let start;
+	let random;
+	let items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11];
+
 	$(document).ready(function() {
-		$('.container div').click(function(event) {
-			console.log($(this).attr('id'));
-			$(this).css('visibility','hidden');
-			console.log($('.container div').length);
-		});
 
-		var numItems = $('.container div').length;
+		// change the state of the running variable
+		var toggle = function toggle() {
+			running = !running;
+		}
 
-		setInterval(function() {
-			var $divs = $('.box').removeClass('highlight');
-			var random = Math.floor(Math.random() * $('.container div').length);
-			$divs.eq(random).addClass('highlight');
-		}, 150);
+		// initially set the flashing
+		var start = setInterval(function() {
+					var $divs = $('.box').removeClass('highlight');
+					//var random = Math.floor(Math.random() * $('.container div').length);
+					random = items[Math.floor(Math.random()*items.length)];
+					//random = rndnumber(items, 10);
+					$divs.eq(random).addClass('highlight');
+			}, 150);
+
+		// stop flashing
+		var stop = function stop() {
+			clearInterval(start)
+		}
+
+		// random number
+		var rndnumber = function rndnumber(items, exclude) {
+			var rnum = items[Math.floor(Math.random()*items.length)];
+			console.log(rnum);
+			if(rnum == exclude) {
+				console.log('I hit 10');
+				return rndnumber(items, 10);
+			} else {
+				console.log('I missed 10');
+				return rnum
+			}
+		}
+
+		$(document).click(function() {
+			if (running) {
+				stop();
+				toggle();
+			} else {
+				// remove selected tile
+				var selected = $('.container').find('.highlight');
+				selected.css('visibility','hidden');
+				// remove element out of array
+				items.splice(items.indexOf(random ), 1);
+				// start the flashing again
+				start = setInterval(function() {
+					var $divs = $('.box').removeClass('highlight');
+					//var random = Math.floor(Math.random() * $('.container div').length);
+					random = items[Math.floor(Math.random()*items.length)];
+					//random = rndnumber(items, 10);
+					$divs.eq(random).addClass('highlight');
+				}, 150);
+				toggle();
+			}
+		})
 	});
 	</script>
 
