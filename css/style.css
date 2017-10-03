@@ -80,5 +80,9 @@ img:not(.png) {
 }
 
 .forest_green {
-    background-color: ForestGreen ;
+    background-color: ForestGreen;
+}
+
+.highlight {
+    filter: brightness(150%);
 }
