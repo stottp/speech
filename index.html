@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 	<title>North's Catchphrase</title>
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="venobox/venobox.css" media="screen" />
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
+	<script type="text/javascript" src="venobox/venobox.min.js"></script>
 </head>
 
 <body>
@@ -34,7 +36,7 @@
 			<img src="images/tuna.svg" height="100em" width="100em" />
 		</div>
 		<div id="nine" class="box dark_blue">
-			<img src="images/laptop.svg" height="100em" width="100em" />
+			<a class="venobox" data-vbtype="video" href="https://www.youtube.com/watch?v=9bZkp7q19f0"> <img alt="Laptop" src="images/laptop.svg" width="100em" height="100em"></a>
 		</div>
 		<div id="ten" class="box dark_blue">
 			<img src="images/euro.svg" height="100em" width="100em" />
@@ -55,6 +57,13 @@
 	let exclude_items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11];
 
 	$(document).ready(function() {
+
+		$('#nine').click(function() {
+			alert( "Handler for .click() called." );
+		});
+
+		// start venobox
+		 $('.venobox').venobox();
 
 		// change the state of the running variable
 		var toggle = function toggle() {
@@ -90,11 +99,13 @@
 
 		$(document).click(function() {
 			if (running) {
-				console.log(random);
-				console.log(items);
-				console.log(exclude_items);
+				// play the video
+				if (random == 8) {
+					//window.location.href="https://www.youtube.com/watch?v=9bZkp7q19f0";
+				}
 				// save the best for last
 				if (random === 10 && items.length > 1) {
+					var $divs = $('.box').removeClass('highlight');
 					random = exclude_items[Math.floor(Math.random()*exclude_items.length)];
 					$divs.eq(random).addClass('highlight');
 				}
